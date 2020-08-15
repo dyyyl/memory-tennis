@@ -22,6 +22,8 @@ const Card = styled.section`
   &:hover {
     background-color: var(--primary);
     color: var(--white);
+    transform: rotate(45deg);
+    transition: 0.5s;
 
     cursor: pointer;
   }
