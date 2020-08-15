@@ -1,28 +1,25 @@
 import React from 'react';
 
-import logo from 'shared/icons/logo.svg';
+import Card from 'shared/components/Card';
+import Grid from 'shared/components/Grid';
+import Main from 'shared/components/Main';
+import Title from 'shared/components/Title';
 
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const App = (): JSX.Element => (
+  <Main>
+    <Title>MEMORY TENNIS LET'S GO!</Title>
+    <Grid>
+      <Card>1</Card>
+      <Card>2</Card>
+      <Card>3</Card>
+      <Card>4</Card>
+      <Card>5</Card>
+      <Card>6</Card>
+      <Card>7</Card>
+      <Card>8</Card>
+      <Card>9</Card>
+    </Grid>
+  </Main>
+);
 
 export default App;

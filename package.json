@@ -18,6 +18,7 @@
     "typescript": "^3.7.5"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.2",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
