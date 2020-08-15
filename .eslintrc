@@ -1,0 +1,59 @@
+{
+  "extends": [
+    "airbnb",
+    "plugin:import/errors",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended"
+  ],
+  "parser": "babel-eslint",
+  "plugins": ["react", "jsx-a11y", "import", "react-hooks"],
+  "env": {
+    "es6": true,
+    "jest": true,
+    "browser": true,
+    "node": true
+  },
+  "globals": {
+    "document": false
+  },
+  "rules": {
+    "react/jsx-props-no-spreading": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "react/jsx-one-expression-per-line": "off",
+    "jsx-a11y/accessible-emoji": "off",
+    "react/style-prop-object": "off",
+    "jsx-a11y/label-has-for": "off",
+    "react/forbid-prop-types": "off",
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": true
+      }
+    ],
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".ts", ".tsx"]
+      }
+    ],
+    "implicit-arrow-linebreak": "off",
+    "function-paren-newline": "off",
+    "no-console": "off",
+    "no-return-assign": "off",
+    "import/extensions": [
+      {
+        ".ts": "never",
+        ".tsx": "never"
+      }
+    ]
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["src"],
+        "extensions": [".ts", ".tsx"]
+      }
+    }
+  }
+}
