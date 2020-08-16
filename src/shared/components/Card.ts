@@ -6,12 +6,16 @@ interface StyleProps {
   showCardBack: boolean;
 }
 
-
 const Card = styled.section<StyleProps>`
   width: 100%;
   height: calc((45vw - 2rem) / 3);
 
   border: 1px solid var(--primary);
+  background-color: ${({ showCardBack }) =>
+    showCardBack ? 'var(--primary)' : 'var(--white)'};
+
+  color: ${({ showCardBack }) =>
+    showCardBack ? 'var(--white)' : 'var(--primary)'};
 
   display: grid;
   place-content: center;
