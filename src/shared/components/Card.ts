@@ -17,6 +17,8 @@ const Card = styled.section<StyleProps>`
   color: ${({ showCardBack }) =>
     showCardBack ? 'var(--white)' : 'var(--primary)'};
 
+  font-size: 5rem;
+
   display: grid;
   place-content: center;
 
