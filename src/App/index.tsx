@@ -13,8 +13,10 @@ interface Card {
 }
 
 const App = (): JSX.Element => {
-  const [cards, setCardCards] = useState<Array<Card>>(deck);
+  const shuffle = (array: Array<Card>): Array<Card> =>
+    array.sort(() => Math.random() - 0.5);
 
+  const [cards] = useState<Array<Card>>([...shuffle(deck)]);
   const [flippedCards, setFlippedCards] = useState<Array<Card>>([]);
 
   const isCardFlipped = (card: Card): boolean => flippedCards.includes(card);
@@ -41,7 +43,7 @@ const App = (): JSX.Element => {
       <Grid>
         {cards.map((card, index) => (
           <Card
-            key={card.id}
+            key={`${card.id}-${index}`}
             onClick={() => updateCardFlipState(index)}
             showCardBack={isCardFlipped(card)}
           >
