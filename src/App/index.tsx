@@ -7,28 +7,28 @@ import Title from 'shared/components/Title';
 
 import deck from 'shared/mocks/deck';
 
-interface Card {
-  id: number;
-  frontContent: number;
-  backContent: string
-}
+import isCardFlipped from 'shared/utils/isCardFlipped';
+import shuffleCards from 'shared/utils/shuffleCards';
+
+import ICard from 'types';
 
 const App = (): JSX.Element => {
-  const [cards, setCardCards] = useState<Array<Card>>(deck);
-
-  const [flippedCards, setFlippedCards] = useState<Array<Card>>([]);
-
-  const isCardFlipped = (card: Card): boolean => flippedCards.includes(card);
+  // initialize with a shuffled deck of cards
+  const [cards] = useState<Array<ICard>>([...shuffleCards(deck)]);
+  const [flippedCards, setFlippedCards] = useState<Array<ICard>>([]);
 
   const updateCardFlipState = (index: number): void => {
+    // if two cards are already flipped, do nothing
     if (flippedCards.length === 2) return;
-    // replace isFlipped value for card[index]
+
+    // yeet card @ [index]
     const card = cards[index];
     // set ☝🏾 to state
     setFlippedCards([...flippedCards, card]);
   };
 
   useEffect(() => {
+    // if there are two flipped cards, unflip all cards after a second
     if (flippedCards.length === 2) {
       setTimeout(() => {
         setFlippedCards([]);
@@ -42,11 +42,11 @@ const App = (): JSX.Element => {
       <Grid>
         {cards.map((card, index) => (
           <Card
-            key={card.id}
+            key={`${card.id}-${index}`}
             onClick={() => updateCardFlipState(index)}
-            showCardBack={isCardFlipped(card)}
+            showCardBack={isCardFlipped(card, flippedCards)}
           >
-            {isCardFlipped(card) ? card.backContent : card.frontContent}
+            {isCardFlipped(card, flippedCards) ? card.content : ''}
           </Card>
         ))}
       </Grid>
