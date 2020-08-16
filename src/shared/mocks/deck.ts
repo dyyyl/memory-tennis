@@ -2,17 +2,17 @@ export default [
   {
     id: 1,
     frontContent: 1,
-    backContent: `✨`, 
+    backContent: `✨`,
   },
   {
     id: 2,
     frontContent: 2,
-    backContent: `🦄`, 
+    backContent: `🦄`,
   },
   {
     id: 3,
     frontContent: 3,
-    backContent: `💩`, 
+    backContent: `💩`,
   },
   {
     id: 4,
@@ -22,14 +22,13 @@ export default [
   {
     id: 5,
     frontContent: 5,
-    backContent: `🦖`, 
+    backContent: `🦖`,
   },
   {
     id: 6,
     frontContent: 6,
     backContent: `🧠`,
   },
-  //
   {
     id: 7,
     frontContent: 7,
@@ -48,7 +47,7 @@ export default [
   {
     id: 10,
     frontContent: 10,
-    backContent: `🐙`,
+    backContent: `💩`,
   },
   {
     id: 11,
