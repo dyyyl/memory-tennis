@@ -74,7 +74,7 @@ return (
       {cardContent.map((card, index) => (
         <Card
           key={card.id}
-          onClick={() => updateCardFlipState(i)}
+          onClick={() => updateCardFlipState(index)}
           showCardBack={card.isFlipped}
         >
           {card.content}
