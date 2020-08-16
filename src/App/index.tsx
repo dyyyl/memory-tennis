@@ -9,8 +9,7 @@ import deck from 'shared/mocks/deck';
 
 interface Card {
   id: number;
-  frontContent: number;
-  backContent: string
+  content: string;
 }
 
 const App = (): JSX.Element => {
@@ -46,7 +45,7 @@ const App = (): JSX.Element => {
             onClick={() => updateCardFlipState(index)}
             showCardBack={isCardFlipped(card)}
           >
-            {isCardFlipped(card) ? card.backContent : card.frontContent}
+            {isCardFlipped(card) ? card.content : ''}
           </Card>
         ))}
       </Grid>
