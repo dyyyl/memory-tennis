@@ -8,7 +8,7 @@ interface StyleProps {
 
 const Card = styled.section<StyleProps>`
   width: 100%;
-  height: calc((45vw - 2rem) / 3);
+  height: calc((45vw - 2rem) / 4);
 
   border: 1px solid var(--primary);
   background-color: ${({ showCardBack }) =>
