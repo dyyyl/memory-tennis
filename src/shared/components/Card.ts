@@ -2,7 +2,12 @@ import styled from 'styled-components';
 
 import breakpoints from 'shared/styles/breakpoints';
 
-const Card = styled.section`
+interface StyleProps {
+  showCardBack: boolean;
+}
+
+
+const Card = styled.section<StyleProps>`
   width: 100%;
   height: calc((45vw - 2rem) / 3);
 
@@ -10,6 +15,10 @@ const Card = styled.section`
 
   display: grid;
   place-content: center;
+
+  transition: transform 0.8s;
+
+  transform: ${({ showCardBack }) => showCardBack && `rotateY(180deg)`};
 
   @media (max-width: ${breakpoints.medium}) {
     height: calc((60vw - 2rem) / 3);
@@ -22,8 +31,6 @@ const Card = styled.section`
   &:hover {
     background-color: var(--primary);
     color: var(--white);
-    transform: rotate(360deg);
-    transition: 1s;
 
     cursor: pointer;
   }
