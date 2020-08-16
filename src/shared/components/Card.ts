@@ -24,12 +24,16 @@ const Card = styled.section<StyleProps>`
 
   transform: ${({ showCardBack }) => showCardBack && `rotateY(180deg)`};
 
+  @media (max-width: ${breakpoints.large}) {
+    height: calc((80vw - 2rem) / 4);
+  }
+
   @media (max-width: ${breakpoints.medium}) {
-    height: calc((60vw - 2rem) / 3);
+    height: calc((90vw - 2rem) / 4);
   }
 
   @media (max-width: ${breakpoints.small}) {
-    height: calc((90vw - 2rem) / 3);
+    height: calc((95vw - 2rem) / 4);
   }
 
   &:hover {

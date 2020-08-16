@@ -13,8 +13,12 @@ const Grid = styled.div`
   grid-gap: 1rem;
   grid-template-columns: repeat(4, 1fr);
 
+  @media (max-width: ${breakpoints.large}) {
+    width: 80vw;
+  }
+
   @media (max-width: ${breakpoints.medium}) {
-    width: 60vw;
+    width: 90vw;
   }
 
   @media (max-width: ${breakpoints.small}) {
