@@ -54,32 +54,35 @@ const App = (): JSX.Element => {
     },
   ]);
 
-const updateCardFlipState = (i: number): void => {
-  // replace isFlipped value for card[i]
-  const card = cardContent[i];
-  // set inverse on isFlipped for card [i]
+const updateCardFlipState = (index: number): void => {
+  // replace isFlipped value for card[index]
+  const card = cardContent[index];
+  // set inverse on isFlipped for card [index]
   card.isFlipped = !card.isFlipped;
 
   // create new array and replace with card
-  const newCardContent = cardContent.slice(0);
-  newCardContent[i] = card;
+  const newCardContent = Object.assign([], cardContent, { [index]: card });
 
   // set ☝🏾 to state
   setCardContent(newCardContent);
 }
   
 return (
-    <Main>
-      <Title>MEMORY TENNIS LET'S GO!</Title>
-      <Grid>
-        {cardContent.map((card, i) => (
-          <Card key={card.id} onClick={() => updateCardFlipState(i)} showCardBack={card.isFlipped}>
-            {card.content}
-          </Card>
-        ))}
-      </Grid>
-    </Main>
-  );
+  <Main>
+    <Title>MEMORY TENNIS LET'S GO!</Title>
+    <Grid>
+      {cardContent.map((card, index) => (
+        <Card
+          key={card.id}
+          onClick={() => updateCardFlipState(i)}
+          showCardBack={card.isFlipped}
+        >
+          {card.content}
+        </Card>
+      ))}
+    </Grid>
+  </Main>
+);
 };
 
 export default App;
