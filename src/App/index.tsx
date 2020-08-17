@@ -29,7 +29,10 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     // if there are two flipped cards, unflip all cards after a second
-    if (flippedCards.length === 2) {
+    if (flippedCards.length === 2 && flippedCards[0].id === flippedCards[1].id) {
+      console.log('match')
+    } else if (flippedCards.length === 2) {
+      console.log('no match');
       setTimeout(() => {
         setFlippedCards([]);
       }, 1000);
