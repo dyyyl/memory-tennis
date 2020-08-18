@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Card from 'shared/components/Card';
 import Grid from 'shared/components/Grid';
@@ -15,24 +15,41 @@ import ICard from 'types';
 const App = (): JSX.Element => {
   // initialize with a shuffled deck of cards
   const [cards] = useState<Array<ICard>>([...shuffleCards(deck)]);
-  const [flippedCards, setFlippedCards] = useState<Array<ICard>>([]);
 
-  const updateCardFlipState = (index: number): void => {
-    // if two cards are already flipped, do nothing
-    if (flippedCards.length === 2) return;
+  const [flippedCards, setFlippedCards] = useState<Array<ICard>>([]);
+  const [matchedCards, setMatchedCards] = useState<Array<ICard>>([]);
+
+  // memoize card-matched values
+  const isCardMatched = useCallback(
+    (card: ICard): boolean => {
+      return isCardFlipped(card, matchedCards);
+    },
+    [matchedCards],
+  );
+
+  const cardIsVisible = (card: ICard): boolean =>
+    isCardFlipped(card, flippedCards) || isCardMatched(card);
+
+  const updateCardFlipState = (index: number, card: ICard): void => {
+    // if card is flipped or matched, or if two cards are already flipped, do nothing
+    if (cardIsVisible(card) || flippedCards.length === 2) return;
 
     // yeet card @ [index]
-    const card = cards[index];
+    const flippedCard = cards[index];
     // set ☝🏾 to state
-    setFlippedCards([...flippedCards, card]);
+    setFlippedCards([...flippedCards, flippedCard]);
   };
 
   useEffect(() => {
-    // if there are two flipped cards, unflip all cards after a second
-    if (flippedCards.length === 2 && flippedCards[0].id === flippedCards[1].id) {
-      console.log('match')
-    } else if (flippedCards.length === 2) {
-      console.log('no match');
+    if (
+      flippedCards.length === 2 && // if there are two flipped cards,
+      flippedCards[0].id === flippedCards[1].id //  and they match,
+    ) {
+      setMatchedCards((m) => [...m, ...flippedCards]); // add to matched Array
+    }
+
+    if (flippedCards.length === 2) {
+      // unflip all cards after a second
       setTimeout(() => {
         setFlippedCards([]);
       }, 1000);
@@ -46,10 +63,10 @@ const App = (): JSX.Element => {
         {cards.map((card, index) => (
           <Card
             key={`${card.id}-${index}`}
-            onClick={() => updateCardFlipState(index)}
-            showCardBack={isCardFlipped(card, flippedCards)}
+            onClick={() => updateCardFlipState(index, card)}
+            showCardBack={cardIsVisible(card)}
           >
-            {isCardFlipped(card, flippedCards) ? card.content : ''}
+            {cardIsVisible(card) ? card.content : ''}
           </Card>
         ))}
       </Grid>
